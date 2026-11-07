@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="ml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Timetable Pro - ടൈംടേബിൾ മാനേജ്മെന്റ് ആപ്പ്</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&family=Noto+Sans+Malayalam:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #1E3A8A;
+            --primary-light: #3B82F6;
+            --secondary: #0D9488;
+            --accent: #F59E0B;
+            --bg: #F8FAFC;
+            --surface: #FFFFFF;
+            --text-main: #0F172A;
+            --text-sub: #475569;
+            --border: #E2E8F0;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Manrope', 'Noto Sans Malayalam', sans-serif;
+            background-color: var(--bg);
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+
+        header {
+            background: linear-gradient(135deg, #1E3A8A 0%, #172554 100%);
+            color: white;
+            padding: 60px 20px 40px;
+            text-align: center;
+            border-bottom: 4px solid var(--accent);
+        }
+
+        .icon-box {
+            width: 90px;
+            height: 90px;
+            background: white;
+            border-radius: 22px;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+            font-size: 42px;
+        }
+
+        h1 {
+            font-size: 2.2rem;
+            font-weight: 800;
+            margin-bottom: 8px;
+        }
+
+        .subtitle {
+            font-size: 1.15rem;
+            opacity: 0.9;
+            max-width: 650px;
+            margin: 0 auto 25px;
+            font-weight: 500;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 14px 28px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1rem;
+            transition: all 0.2s ease;
+        }
+
+        .btn-primary {
+            background-color: var(--accent);
+            color: #1E293B;
+            box-shadow: 0 4px 15px rgba(245, 158, 11, 0.4);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(245, 158, 11, 0.5);
+            background-color: #D97706;
+            color: white;
+        }
+
+        .btn-outline {
+            background-color: rgba(255, 255, 255, 0.15);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .btn-outline:hover {
+            background-color: rgba(255, 255, 255, 0.25);
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-bottom: 50px;
+        }
+
+        .feature-card {
+            background: var(--surface);
+            border-radius: 16px;
+            padding: 24px;
+            border: 1px solid var(--border);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            transition: transform 0.2s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-4px);
+        }
+
+        .feature-icon {
+            font-size: 28px;
+            margin-bottom: 12px;
+            display: inline-block;
+            background: #EFF6FF;
+            width: 50px;
+            height: 50px;
+            line-height: 50px;
+            text-align: center;
+            border-radius: 12px;
+        }
+
+        .feature-card h3 {
+            font-size: 1.15rem;
+            margin-bottom: 8px;
+            color: var(--primary);
+        }
+
+        .feature-card p {
+            font-size: 0.95rem;
+            color: var(--text-sub);
+        }
+
+        .guide-section {
+            background: var(--surface);
+            border-radius: 16px;
+            padding: 30px;
+            border: 1px solid var(--border);
+            margin-bottom: 40px;
+        }
+
+        .guide-section h2 {
+            font-size: 1.4rem;
+            margin-bottom: 16px;
+            color: var(--primary);
+        }
+
+        .steps-list {
+            list-style: none;
+            counter-reset: step-counter;
+        }
+
+        .steps-list li {
+            counter-increment: step-counter;
+            margin-bottom: 18px;
+            position: relative;
+            padding-left: 45px;
+        }
+
+        .steps-list li::before {
+            content: counter(step-counter);
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 32px;
+            height: 32px;
+            background-color: var(--primary);
+            color: white;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 32px;
+            font-weight: 700;
+            font-size: 0.9rem;
+        }
+
+        .steps-list h4 {
+            font-size: 1.05rem;
+            margin-bottom: 4px;
+        }
+
+        .steps-list p {
+            color: var(--text-sub);
+            font-size: 0.92rem;
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px;
+            color: var(--text-sub);
+            font-size: 0.9rem;
+            border-top: 1px solid var(--border);
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            background-color: #DCFCE7;
+            color: #15803D;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="icon-box">📅</div>
+        <div class="badge">Android Native App</div>
+        <h1>ടൈംടേബിൾ പ്രോ (Timetable Pro)</h1>
+        <p class="subtitle">രണ്ടു സ്ഥാപനങ്ങൾക്കും അധ്യാപകരുടെ ലഭ്യതയ്ക്കും അനുസൃതമായി ടൈംടേബിൾ ക്രമീകരിക്കാനുള്ള സമ്പൂർണ്ണ ആൻഡ്രോയിഡ് ആപ്ലിക്കേഷൻ.</p>
+        <div class="btn-group">
+            <a href="https://github.com/algaithwafiyya-bit/table-pro/releases" class="btn btn-primary">
+                ⬇️ Download Android APK
+            </a>
+            <a href="https://github.com/algaithwafiyya-bit/table-pro" class="btn btn-outline">
+                📁 GitHub Repository
+            </a>
+        </div>
+    </header>
+
+    <div class="container">
+        <h2 style="text-align: center; margin-bottom: 30px; color: var(--primary);">ആപ്പിന്റെ പ്രധാന സവിശേഷതകൾ</h2>
+
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">👨‍🏫</div>
+                <h3>അധ്യാപക ലഭ്യത പരിശോധന</h3>
+                <p>അധ്യാപകർക്ക് മുഴുവൻ ദിവസമായോ ഓരോ പിരീഡുകൾ തിരിച്ചോ ലീവോ തിരക്കോ രേഖപ്പെടുത്താം. ഷെഡ്യൂൾ ചെയ്യുമ്പോൾ തത്സമയ മുന്നറിയിപ്പ് ലഭിക്കും.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">👥</div>
+                <h3>ബാച്ച് തിരിക്കൽ (Dual Batches)</h3>
+                <p>ഒരേ പിരീഡിൽ ഒരേ ക്ലാസിൽ തന്നെ ബാച്ച് A, ബാച്ച് B എന്നിങ്ങനെ തിരിച്ച് രണ്ട് വിഷയങ്ങളും രണ്ട് അധ്യാപകരെയും ഒരേസമയം ഷെഡ്യൂൾ ചെയ്യാം.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">🤝</div>
+                <h3>ഷെയർ അധ്യാപകർ (Shared Classes)</h3>
+                <p>3 പിരീഡുകളിൽ 1 പിരീഡ് രണ്ടാമതൊരു അധ്യാപകൻ എടുക്കുന്ന രീതിയും കോ-ടീച്ചിംഗ് രീതിയും എളുപ്പത്തിൽ ക്രമീകരിക്കാം.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">🏫</div>
+                <h3>രണ്ട് സ്ഥാപനങ്ങളും തടസ്സ പരിശോധനയും</h3>
+                <p>രണ്ട് കോളേജുകളിലും ഒരേ അധ്യാപകൻ പഠിപ്പിക്കുന്നുണ്ടെങ്കിൽ, ഒരേ സമയത്ത് രണ്ട് കോളേജിലും ക്ലാസ് വരാത്തവിധം ക്രോസ്സ് ക്ലാഷ് തടയും.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">⏱️</div>
+                <h3>ദിവസേനയുള്ള പിരീഡ് എണ്ണം</h3>
+                <p>വെള്ളിയാഴ്ച 4 പിരീഡ്, മറ്റ് ദിവസങ്ങളിൽ 6 പിരീഡ് എന്നിങ്ങനെ ഓരോ ദിവസത്തേയും പിരീഡുകളുടെ എണ്ണം ക്രമീകരണങ്ങളിൽ നിന്നും മാറ്റാം.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">📲</div>
+                <h3>വാട്സ്ആപ്പ് ഷെയറിംഗ്</h3>
+                <p>ക്ലാസുകളുടെ ടൈംടേബിൾ ഒറ്റ ക്ലിക്കിൽ വാട്സ്ആപ്പിലോ പ്രിന്ററിലോ പങ്കുവെക്കാൻ അനുയോജ്യമായ ഫോർമാറ്റിൽ ലഭിക്കും.</p>
+            </div>
+        </div>
+
+        <div class="guide-section">
+            <h2>ആപ്പ് ഫോണിൽ ഇൻസ്റ്റാൾ ചെയ്യുന്നത് എങ്ങനെ?</h2>
+            <ol class="steps-list">
+                <li>
+                    <h4>APK ഫയൽ ഡൗൺലോഡ് ചെയ്യുക</h4>
+                    <p>മുകളിലുള്ള <strong>"Download Android APK"</strong> ബട്ടണിൽ ക്ലിക്ക് ചെയ്ത് ഏറ്റവും പുതിയ Release-ൽ നിന്നും <code>.apk</code> ഫയൽ ഡൗൺലോഡ് ചെയ്യുക.</p>
+                </li>
+                <li>
+                    <h4>ഫോണിൽ ഇൻസ്റ്റാൾ ചെയ്യുക</h4>
+                    <p>ഡൗൺലോഡ് ചെയ്ത ഫയൽ ഓപ്പൺ ചെയ്യുക. ആവശ്യപ്പെട്ടാൽ <em>"Install unknown apps"</em> പെർമിഷൻ നൽകി ആപ്പ് ഇൻസ്റ്റാൾ ചെയ്യുക.</p>
+                </li>
+                <li>
+                    <h4>ആപ്പ് ഉപയോഗിച്ച് തുടങ്ങുക</h4>
+                    <p>ആപ്പ് തുറന്നയുടൻ സാമ്പിൾ ഡാറ്റയോടെ പ്രവർത്തിക്കും. ആവശ്യമെങ്കിൽ നിങ്ങളുടെ കോളേജിന്റെ ക്ലാസുകളും അധ്യാപകരെയും ചേർത്ത് പുതിയ ടൈംടേബിൾ നിർമ്മിക്കാം.</p>
+                </li>
+            </ol>
+        </div>
+    </div>
+
+    <footer>
+        <p>Timetable Pro - Developed with Jetpack Compose & Kotlin | Al Gaith Wafiyya</p>
+    </footer>
+
+</body>
+</html>
